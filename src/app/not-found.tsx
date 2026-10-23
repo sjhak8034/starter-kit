@@ -5,7 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <Container className="flex flex-col items-center gap-4 py-24 text-center">
+    <Container className="flex flex-col items-center gap-4 py-36 text-center">
       <p className="text-sm font-medium text-muted-foreground">404</p>
       <h1 className="text-3xl font-bold tracking-tight">
         페이지를 찾을 수 없습니다

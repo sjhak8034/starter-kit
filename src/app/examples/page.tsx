@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function ExamplesPage() {
   return (
     <>
-      <header className="mb-10 space-y-2">
+      <header className="mb-15 space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">예제</h1>
         <p className="text-muted-foreground">
           웹 개발에 자주 필요한 패턴을 동작하는 데모와 핵심 코드로 정리했습니다.

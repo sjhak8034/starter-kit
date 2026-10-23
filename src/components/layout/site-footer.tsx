@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site"
 
 export function SiteFooter() {
   return (
-    <footer className="border-t py-6">
+    <footer className="border-t py-9">
       <Container className="flex flex-col items-center justify-between gap-2 text-sm text-muted-foreground sm:flex-row">
         <p>{siteConfig.name}</p>
         <a

@@ -42,8 +42,8 @@ const steps = [
 export default function Home() {
   return (
     <>
-      <section className="py-20 sm:py-28">
-        <Container className="flex flex-col items-center gap-6 text-center">
+      <section className="py-30 sm:py-42">
+        <Container className="flex flex-col items-center gap-9 text-center">
           <Badge variant="secondary">Next.js 16 · React 19 · shadcn/ui</Badge>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
             {siteConfig.name}
@@ -84,7 +84,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-t bg-muted/30 py-16">
+      <section className="border-t bg-muted/30 py-24">
         <Container>
           <SectionHeading
             title="기술 스택"
@@ -120,7 +120,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-16">
+      <section className="py-24">
         <Container>
           <SectionHeading
             title="주요 기능"
@@ -152,14 +152,14 @@ export default function Home() {
 
       <section
         id="getting-started"
-        className="scroll-mt-14 border-t bg-muted/30 py-16"
+        className="scroll-mt-14 border-t bg-muted/30 py-24"
       >
         <Container className="max-w-3xl">
           <SectionHeading
             title="바로 시작하기"
             description="네 단계면 내 프로젝트를 띄울 수 있습니다."
           />
-          <ol className="space-y-6">
+          <ol className="space-y-9">
             {steps.map((step, index) => (
               <li key={step.title} className="flex gap-4">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
@@ -175,7 +175,7 @@ export default function Home() {
               </li>
             ))}
           </ol>
-          <div className="mt-10 flex justify-center">
+          <div className="mt-15 flex justify-center">
             <Link href="/examples" className={cn(buttonVariants({ size: "lg" }))}>
               예제 둘러보기
               <ArrowRight />
@@ -195,7 +195,7 @@ function SectionHeading({
   description: string;
 }) {
   return (
-    <div className="mb-8 text-center">
+    <div className="mb-12 text-center">
       <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
         {title}
       </h2>

@@ -11,7 +11,7 @@ type ExampleHeaderProps = {
 
 export function ExampleHeader({ title, description, learn }: ExampleHeaderProps) {
   return (
-    <header className="mb-10 space-y-4">
+    <header className="mb-15 space-y-4">
       <Link
         href="/examples"
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
@@ -43,7 +43,7 @@ export function ExampleSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="space-y-4 border-t py-8">
+    <section className="space-y-4 border-t py-12">
       <div>
         <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
         {description && (
