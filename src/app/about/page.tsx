@@ -28,7 +28,7 @@ export default function AboutPage() {
         <CardHeader>
           <CardTitle>사용 중인 기술</CardTitle>
           <CardDescription>
-            app/about/page.tsx 를 복사해 새 페이지를 만드세요.
+            src/app/about/page.tsx 를 복사해 새 페이지를 만드세요.
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-2">

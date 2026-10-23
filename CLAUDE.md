@@ -14,21 +14,22 @@ npm run lint    # ESLint
 ## 기술 스택
 
 - Next.js 16 (App Router, Turbopack), React 19, TypeScript (strict)
-- Tailwind CSS v4: `tailwind.config`가 없고 `app/globals.css`의 `@theme inline`에서 설정
+- Tailwind CSS v4: `tailwind.config`가 없고 `src/app/globals.css`의 `@theme inline`에서 설정
 - shadcn/ui (style `base-nova`): Radix가 아니라 `@base-ui/react` 기반
 - lucide-react 1.x, next-themes
 
 ## 구조
 
 ```
-app/                 라우트 (layout, page, about, not-found)
-components/ui/       shadcn 컴포넌트 (CLI로 추가)
-components/layout/   헤더, 푸터, 내비게이션, Container
-config/site.ts       사이트 이름, 내비, 기능 목록 등 설정 데이터
-lib/utils.ts         cn() (clsx + tailwind-merge)
+src/app/                 라우트 (layout, page, about, not-found)
+src/components/ui/       shadcn 컴포넌트 (CLI로 추가)
+src/components/layout/   헤더, 푸터, 내비게이션, Container
+src/config/site.ts       사이트 이름, 내비, 기능 목록 등 설정 데이터
+src/lib/utils.ts         cn() (clsx + tailwind-merge)
+public/                  정적 파일
 ```
 
-경로 alias `@/*`는 프로젝트 루트를 가리킵니다 (`src/` 미사용).
+경로 alias `@/*`는 `src/*`를 가리킵니다.
 
 ## 규칙과 주의사항
 
@@ -42,4 +43,4 @@ lib/utils.ts         cn() (clsx + tailwind-merge)
 - base-ui 컴포넌트는 `asChild`가 아니라 `render` prop을 씁니다. 예: `<DropdownMenuTrigger render={<Button />}>`
 - 링크 모양 버튼은 `<Link className={buttonVariants()}>`를 씁니다.
 - lucide-react 1.x에는 브랜드 아이콘(`Github` 등)이 없습니다.
-- 사이트 이름, 내비 항목은 `config/site.ts`에서만 수정합니다.
+- 사이트 이름, 내비 항목은 `src/config/site.ts`에서만 수정합니다.

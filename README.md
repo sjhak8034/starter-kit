@@ -34,19 +34,22 @@ http://localhost:3000 에서 확인할 수 있습니다.
 ## 폴더 구조
 
 ```
-app/                 라우트 (홈, 소개, 404)
-components/ui/       shadcn/ui 컴포넌트
-components/layout/   헤더, 푸터, 내비게이션, Container
-components/          ThemeProvider, ThemeToggle
-config/site.ts       사이트 이름, 내비, 기능 목록
-lib/utils.ts         cn() 유틸
+src/
+├── app/                 라우트 (홈, 소개, 404)
+├── components/
+│   ├── ui/              shadcn/ui 컴포넌트
+│   ├── layout/          헤더, 푸터, 내비게이션, Container
+│   └── ...              ThemeProvider, ThemeToggle
+├── config/site.ts       사이트 이름, 내비, 기능 목록
+└── lib/utils.ts         cn() 유틸
+public/                  정적 파일
 ```
 
 ## 사용법
 
-**사이트 정보 바꾸기**: `config/site.ts`에서 이름, 설명, 내비게이션, 기능 카드를 수정합니다.
+**사이트 정보 바꾸기**: `src/config/site.ts`에서 이름, 설명, 내비게이션, 기능 카드를 수정합니다.
 
-**페이지 추가**: `app/<경로>/page.tsx`를 만들고, 내비에 보이려면 `config/site.ts`의 `nav`에 항목을 추가합니다.
+**페이지 추가**: `src/app/<경로>/page.tsx`를 만들고, 내비에 보이려면 `src/config/site.ts`의 `nav`에 항목을 추가합니다.
 
 **shadcn 컴포넌트 추가**:
 
@@ -54,7 +57,7 @@ lib/utils.ts         cn() 유틸
 npx shadcn@latest add tabs
 ```
 
-**테마 색상 변경**: `app/globals.css`의 `:root`, `.dark` 변수를 수정합니다.
+**테마 색상 변경**: `src/app/globals.css`의 `:root`, `.dark` 변수를 수정합니다.
 
 ## 포함된 shadcn 컴포넌트
 
