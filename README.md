@@ -34,7 +34,7 @@ http://localhost:3000 에서 확인할 수 있습니다.
 
 | 경로 | 내용 |
 | --- | --- |
-| `/` | 소개, 기술 스택, 주요 기능, 바로 시작하기(`#getting-started`) |
+| `/` | 한 화면씩 채우는 섹션 5개: 홈, 기술 스택, 주요 기능, 시작하기, 예제. 상단 메뉴로 부드럽게 이동 |
 | `/examples` | 예제 목록 |
 | `/examples/forms` | Server Action + `useActionState` + zod 폼 검증 |
 | `/examples/data-fetching` | Suspense 스트리밍, `use cache`, `error.tsx` |
@@ -61,7 +61,9 @@ public/                      정적 파일
 
 **사이트 정보 바꾸기**: `src/config/site.ts`에서 이름, 설명, 설치 명령어, 내비게이션, 기능 카드, 기술 스택을 수정합니다.
 
-**페이지 추가**: `src/app/<경로>/page.tsx`를 만들고, 내비에 보이려면 `src/config/site.ts`의 `nav`에 항목을 추가합니다.
+**페이지 추가**: `src/app/<경로>/page.tsx`를 만듭니다.
+
+**홈 섹션 추가**: `src/app/page.tsx`에 `<section id="이름" className={screenSection}>`을 추가하고, 상단 메뉴에 보이려면 `src/config/site.ts`의 `nav`에 `{ title, section: "이름" }`을 추가합니다.
 
 **예제 추가**: `src/app/examples/<이름>/page.tsx`를 만들고 `src/config/site.ts`의 `examples`에 항목을 추가합니다.
 

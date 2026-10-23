@@ -31,7 +31,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="ko"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // 섹션 이동은 부드럽게 스크롤하고, 페이지 이동 때는 Next.js가 잠시 꺼서 즉시 맨 위로 간다 (Next 16부터 명시 필요).
+      data-scroll-behavior="smooth"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased motion-safe:scroll-smooth`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider

@@ -2,16 +2,13 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
-// 앵커 링크는 스크롤 위치를 알 수 없어 강조하지 않고, 홈은 정확히 일치할 때만, 나머지는 하위 경로까지 강조한다.
-function isActive(href: string, pathname: string) {
-  if (href.includes("#")) return false
-  if (href === "/") return pathname === "/"
-  return pathname === href || pathname.startsWith(`${href}/`)
-}
+// 모바일 Sheet는 열려 있는 동안 스크롤을 잠그므로, 닫힘 애니메이션(200ms)이 끝난 뒤 스크롤한다.
+const SHEET_CLOSE_DELAY = 250
 
 type MainNavProps = {
   orientation?: "horizontal" | "vertical"
@@ -23,6 +20,47 @@ export function MainNav({
   onNavigate,
 }: MainNavProps) {
   const pathname = usePathname()
+  const isHome = pathname === "/"
+  const [currentSection, setCurrentSection] = useState<string>("home")
+
+  // 화면 세로 가운데를 지나는 섹션을 현재 섹션으로 본다.
+  useEffect(() => {
+    if (!isHome) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setCurrentSection(entry.target.id)
+        }
+      },
+      { rootMargin: "-50% 0px -50% 0px" }
+    )
+    for (const { section } of siteConfig.nav) {
+      const element = document.getElementById(section)
+      if (element) observer.observe(element)
+    }
+    return () => observer.disconnect()
+  }, [isHome])
+
+  function handleClick(event: React.MouseEvent, section: string) {
+    onNavigate?.()
+    // 다른 페이지에서는 Link가 /#section 으로 이동한다.
+    if (!isHome) return
+
+    event.preventDefault()
+    const element = document.getElementById(section)
+    if (!element) return
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
+    const scroll = () => {
+      element.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })
+      history.replaceState(null, "", `#${section}`)
+    }
+    if (onNavigate) setTimeout(scroll, SHEET_CLOSE_DELAY)
+    else scroll()
+  }
 
   return (
     <nav
@@ -31,20 +69,23 @@ export function MainNav({
         orientation === "vertical" ? "flex-col" : "items-center"
       )}
     >
-      {siteConfig.nav.map((item) => {
-        const active = isActive(item.href, pathname)
+      {siteConfig.nav.map(({ title, section }) => {
+        // 홈에서는 보고 있는 섹션을, 다른 페이지에서는 /examples/* 처럼 같은 이름의 경로를 강조한다.
+        const active = isHome
+          ? currentSection === section
+          : pathname.startsWith(`/${section}`)
         return (
           <Link
-            key={item.href}
-            href={item.href}
-            onClick={onNavigate}
-            aria-current={active ? "page" : undefined}
+            key={section}
+            href={`/#${section}`}
+            onClick={(event) => handleClick(event, section)}
+            aria-current={active ? "location" : undefined}
             className={cn(
-              "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted",
-              active ? "text-foreground" : "text-muted-foreground"
+              "rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors hover:bg-muted",
+              active ? "bg-muted text-foreground" : "text-muted-foreground"
             )}
           >
-            {item.title}
+            {title}
           </Link>
         )
       })}

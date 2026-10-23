@@ -52,3 +52,6 @@ public/                  정적 파일
 - 링크 모양 버튼은 `<Link className={buttonVariants()}>`를 씁니다.
 - lucide-react 1.x에는 브랜드 아이콘(`Github` 등)이 없습니다. eslint는 이를 잡지 못하니 `npm run build`로 확인합니다.
 - 사이트 이름, 내비 항목은 `src/config/site.ts`에서만 수정합니다.
+- 상단 메뉴(`nav`)는 홈 섹션으로 이동합니다. `nav[].section`은 `src/app/page.tsx`의 `<section id>`와 같아야 합니다.
+  - 부드러운 스크롤은 `<html>`의 `motion-safe:scroll-smooth`와 `data-scroll-behavior="smooth"`(Next 16에서 페이지 이동 시 즉시 스크롤)로 처리합니다.
+  - 현재 섹션 강조와 모바일 Sheet 닫힘 후 스크롤은 `src/components/layout/main-nav.tsx`에 있습니다.

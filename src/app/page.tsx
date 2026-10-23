@@ -2,6 +2,7 @@ import { ArrowRight, ExternalLink, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 
 import { CodeBlock } from "@/components/code-block";
+import { ExampleCards } from "@/components/example-cards";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -17,7 +18,9 @@ import { cn } from "@/lib/utils";
 
 // sticky 헤더(site-header.tsx의 h-14 = 3.5rem)를 뺀 나머지를 한 화면으로 채우고 내용은 세로 가운데에 둔다.
 // min-h라서 모바일처럼 내용이 더 길면 섹션이 늘어난다.
-const screenSection = "flex min-h-[calc(100svh-3.5rem)] flex-col justify-center py-16";
+// scroll-mt-14는 메뉴로 이동했을 때 섹션 윗부분이 sticky 헤더에 가려지지 않게 한다.
+const screenSection =
+  "flex min-h-[calc(100svh-3.5rem)] scroll-mt-14 flex-col justify-center py-16";
 
 const steps = [
   {
@@ -46,7 +49,7 @@ const steps = [
 export default function Home() {
   return (
     <>
-      <section className={screenSection}>
+      <section id="home" className={screenSection}>
         <Container className="flex flex-col items-center gap-9 text-center">
           <Badge variant="secondary">Next.js 16 · React 19 · shadcn/ui</Badge>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
@@ -65,7 +68,7 @@ export default function Home() {
               <ArrowRight />
             </Link>
             <Link
-              href="/examples"
+              href="#examples"
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
               <LayoutGrid />
@@ -88,7 +91,10 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className={cn(screenSection, "border-t bg-muted/30")}>
+      <section
+        id="tech-stack"
+        className={cn(screenSection, "border-t bg-muted/30")}
+      >
         <Container>
           <SectionHeading
             title="기술 스택"
@@ -124,7 +130,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className={screenSection}>
+      <section id="features" className={screenSection}>
         <Container>
           <SectionHeading
             title="주요 기능"
@@ -156,7 +162,7 @@ export default function Home() {
 
       <section
         id="getting-started"
-        className={cn(screenSection, "scroll-mt-14 border-t bg-muted/30")}
+        className={cn(screenSection, "border-t bg-muted/30")}
       >
         <Container className="max-w-3xl">
           <SectionHeading
@@ -180,11 +186,21 @@ export default function Home() {
             ))}
           </ol>
           <div className="mt-15 flex justify-center">
-            <Link href="/examples" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href="#examples" className={cn(buttonVariants({ size: "lg" }))}>
               예제 둘러보기
               <ArrowRight />
             </Link>
           </div>
+        </Container>
+      </section>
+
+      <section id="examples" className={cn(screenSection, "border-t")}>
+        <Container>
+          <SectionHeading
+            title="예제"
+            description="웹 개발에 자주 필요한 패턴을 동작하는 데모와 핵심 코드로 정리했습니다."
+          />
+          <ExampleCards />
         </Container>
       </section>
     </>

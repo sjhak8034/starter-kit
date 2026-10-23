@@ -24,10 +24,13 @@ export const siteConfig = {
   repository: "https://github.com/sjhak8034/starter-kit",
   installCommand:
     "git clone https://github.com/sjhak8034/starter-kit.git my-app && cd my-app && npm install && npm run dev",
+  // 홈의 각 섹션으로 이동하는 메뉴. section은 src/app/page.tsx의 <section id>와 같아야 한다.
   nav: [
-    { title: "홈", href: "/" },
-    { title: "시작하기", href: "/#getting-started" },
-    { title: "예제", href: "/examples" },
+    { title: "홈", section: "home" },
+    { title: "기술 스택", section: "tech-stack" },
+    { title: "주요 기능", section: "features" },
+    { title: "시작하기", section: "getting-started" },
+    { title: "예제", section: "examples" },
   ],
 } as const
 
