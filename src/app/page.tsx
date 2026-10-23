@@ -15,6 +15,10 @@ import {
 import { features, siteConfig, techStack } from "@/config/site";
 import { cn } from "@/lib/utils";
 
+// sticky 헤더(site-header.tsx의 h-14 = 3.5rem)를 뺀 나머지를 한 화면으로 채우고 내용은 세로 가운데에 둔다.
+// min-h라서 모바일처럼 내용이 더 길면 섹션이 늘어난다.
+const screenSection = "flex min-h-[calc(100svh-3.5rem)] flex-col justify-center py-16";
+
 const steps = [
   {
     title: "저장소 복제",
@@ -42,7 +46,7 @@ const steps = [
 export default function Home() {
   return (
     <>
-      <section className="py-30 sm:py-42">
+      <section className={screenSection}>
         <Container className="flex flex-col items-center gap-9 text-center">
           <Badge variant="secondary">Next.js 16 · React 19 · shadcn/ui</Badge>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
@@ -84,7 +88,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-t bg-muted/30 py-24">
+      <section className={cn(screenSection, "border-t bg-muted/30")}>
         <Container>
           <SectionHeading
             title="기술 스택"
@@ -120,7 +124,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className={screenSection}>
         <Container>
           <SectionHeading
             title="주요 기능"
@@ -152,7 +156,7 @@ export default function Home() {
 
       <section
         id="getting-started"
-        className="scroll-mt-14 border-t bg-muted/30 py-24"
+        className={cn(screenSection, "scroll-mt-14 border-t bg-muted/30")}
       >
         <Container className="max-w-3xl">
           <SectionHeading
