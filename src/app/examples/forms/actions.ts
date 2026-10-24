@@ -3,10 +3,9 @@
 import { z } from "zod";
 
 const contactSchema = z.object({
-  // TODO(human): 각 필드의 검증 규칙과 한국어 에러 메시지를 정의하세요.
-  name: z.string(),
-  email: z.string(),
-  message: z.string(),
+  name: z.string().trim().min(2, "이름을 2자 이상 입력해 주세요."),
+  email: z.email("올바른 이메일 주소를 입력해 주세요."),
+  message: z.string().trim().min(10, "메시지를 10자 이상 입력해 주세요."),
 });
 
 type ContactFields = z.infer<typeof contactSchema>;
